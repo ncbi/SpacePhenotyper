@@ -1,5 +1,5 @@
 # SpacePhenotyper
-SpaceProfiler: A computational method for translating information between different (but related) types of data
+SpacePhenotyper: A computational method for translating information between different (but related) types of data
 #### Pre-required installations before running SpacePhenotyper
 Python libraries pandas, numpy, seaborn, scipy, matplotlib and sklearn are prerequired to be installed before running SpacePhenotyper
 #### Input Data to SpacePhenotyper
@@ -24,7 +24,7 @@ Result['Cosine-Similarity'].to_csv('Predicted-Phentype-On-Spots.csv')  # Save th
 plt.savefig('Prediction-Plot.png', dpi=300,  bbox_inches = 'tight')    # Save the prediction plot for phenotype quantity
 ```
 #### Python [Package](code)
-* The SpaceProfiler method is implemented in python and the codes are available as [Python Code](code/SpacePhenotyper.py) and [Jupyter Notebook](code/SpacePhenotyper.ipynb) modules.
+* The SpacePhenotyper method is implemented in python and the codes are available as [Python Code](code/SpacePhenotyper.py) and [Jupyter Notebook](code/SpacePhenotyper.ipynb) modules.
 
 #### Bulk data sets [Data Bulk](Bulk-data)
 For each of the four cancer data sets (BRCA, COAD LUAD and LUSC), the phenotype quantity of patients (Tumor-Purity, Hazard, Stemness and Proliferation) and bulk gene expression matrices whose columns represent the genes and rows represent patients
