@@ -57,7 +57,7 @@ def PlotPrediction(xloc,yloc, Cosine, Method):
     fig, ax = plt.subplots(figsize=(6.5, 5))
     vmin, vmax = Cosine.min(), Cosine.max()
     normalize = mcolors.TwoSlopeNorm(vcenter=vmin+(vmax-vmin)*2/4, vmin=vmin, vmax=vmax) 
-    DotSize=35           # Change the size of dots depending on resolution of SRT data and figure size
+    DotSize=20           # Change the size of dots depending on resolution of SRT data and figure size
     
     orig_map = cm.RdYlBu
     reversed_map = orig_map.reversed() 
@@ -73,7 +73,7 @@ def PlotPrediction(xloc,yloc, Cosine, Method):
     ax.spines['left'].set_linewidth(0.95)
     ax.spines['right'].set_linewidth(0.95)
 
-    sns.set(font_scale =2.4, style='white', font='Arial') # Change the font size depending on figure size
+    sns.set(font_scale =1.5, style='white', font='Arial') # Change the font size depending on figure size
     plt.savefig(Method+'-Prediction-Plot.png', dpi = 300, bbox_inches = 'tight')
 
 def ComputeROC(df, Spots, NonSpots):
@@ -88,8 +88,10 @@ def ComputeROC(df, Spots, NonSpots):
     return pd.DataFrame(Core, columns=['TP','FP','FN','TN','TPR','FPR']) 
 # Estimation of Eigen-Patient from bulk data of cancer patients
 
-BulkExpression = pd.read_csv('Bulk-Expr-BRCA-TCGA.csv', index_col=0)    # Load the vector of phenotype quantity]    # Load the bulk gene expression data 
-PhenotypeVector = pd.read_csv('PhenotypeVector-TP-BRCA-TCGA.csv', index_col=0) 
+BulkExpression = pd.read_csv('Bulk-Expr-BRCA-TCGA.csv', index_col=0)           # Load the bulk gene expression matrix (columns are genes and rows are patients)
+PhenotypeVector = pd.read_csv('PhenotypeVector-TP-BRCA-TCGA.csv', index_col=0) # Load the vector of phenotype quantity matched with the rows of bulk gene expression matrix (a vector across patients)
+DataSRT = pd.read_csv('SRT-Expr-Breast-1.1.0-Smoothed.csv', index_col=0)       # SRT gene expression matrix (rows are genes, and columns are spots)
+MetaData = pd.read_csv('SRT-tissue-positions-Breast-1.1.0.csv', index_col=0)   # Load spot locations in SRT data
 ind = (PhenotypeVector.index).intersection(BulkExpression.index)
 BulkExpression = BulkExpression.loc[ind]
 PhenotypeVector = PhenotypeVector.loc[ind]
@@ -101,16 +103,14 @@ EigenPatient = ComputeEigenPatient(BulkExpression, EigenGene) # Compute the Eige
 EigenPatient.to_csv('Eigen-Patient.csv')            # Save Eigen-Gene vector as a cvs file
 
 # Prediction of phenotype on spatial locations
-DataSRT = pd.read_csv('SRT-Expr-Breast-1.1.0-Smoothed.csv', index_col=0).T # SRT gene expression matrix (rows are genes, and columns are spots)
-ind = (DataSRT.columns).intersection(EigenPatient.index)
-DataSRT=DataSRT[ind].T
+ind = (DataSRT.index).intersection(EigenPatient.index)
+DataSRT=DataSRT.loc[ind]
 EigenPatient=EigenPatient.loc[ind]
 n = len(DataSRT.columns)
 # Compute cosine similartiy between Eigen-Patient and gene expression in each spot
 Cosine = pd.DataFrame(np.zeros((n,1)), columns=['SpacePhenotyper'], index=DataSRT.columns)
 for i in Cosine.index:
     Cosine.loc[i] = dot(EigenPatient['Eigen-Patient'], DataSRT[i])/(norm(EigenPatient['Eigen-Patient'])*norm(DataSRT[i]))  
-MetaData = pd.read_csv('SRT-tissue-positions-Breast-1.1.0.csv', index_col=0) # Load spot locations in SRT data
 index = (Cosine.index).intersection(MetaData.index)
 
 MetaData = MetaData.loc[index]
@@ -122,6 +122,6 @@ y = Result['array_col']
 
 theta=-90
 x, y = rot2d(x,y, theta)
-Result['SpacePhenotyper'].to_csv('SpacePhenotyper-On-Spots.csv') 
+Result['SpacePhenotyper'].to_csv('PredictedValues-On-Spots.csv') 
 PlotPrediction(x,y, normalize_array(Result['SpacePhenotyper']), 'SpacePhenotyper') # Plot the prediction of phenotype quantity
 print('Done!')
