@@ -5,10 +5,10 @@ Python libraries pandas, numpy, seaborn, scipy, matplotlib and sklearn are prere
 #### Input Data to SpacePhenotyper
 Quantity vector of a cancer-related phenotype across patents, corresponding bulk gene expression data, and spatially resolved transcriptomic (SRT) data as cvs files
 ```
-BulkExpression = pd.read_csv('Bulk-ExprData.csv', index_col=0)    # Load the bulk gene expression matrix (columns are genes and rows are patients)
-PhenotypeVector = pd.read_csv('PhenotypeVector.csv', index_col=0)       # Load the vector of phenotype quantity matched with the rows of bulk gene expression matrix (a vector across patients)
-DataSRT = pd.read_csv('SRT-ExprData.csv', index_col=0) # Load the SRT gene expression matrix (columns are spots and rows are genes)  
-MetaData = pd.read_csv('SRT-spot-locations.csv', index_col=0)  # Load the spot locations corresponding to SRT gene expression matrix
+BulkExpression = pd.read_csv('Bulk-Expr-BRCA-TCGA.csv', index_col=0)           # Load the bulk gene expression matrix (columns are genes and rows are patients)
+PhenotypeVector = pd.read_csv('PhenotypeVector-TP-BRCA-TCGA.csv', index_col=0) # Load the vector of phenotype quantity matched with the rows of bulk gene expression matrix (a vector across patients)
+DataSRT = pd.read_csv('SRT-Expr-Breast-1.1.0-Smoothed.csv', index_col=0)       # SRT gene expression matrix (rows are genes, and columns are spots)
+MetaData = pd.read_csv('SRT-tissue-positions-Breast-1.1.0.csv', index_col=0)   # Load spot locations in SRT data
 ```
 #### To Run SpacePhenotyper
 SpacePhenotyper takes a phenotype quantity vector and a bulk gene expression matrix across multiple patients, and SRT gene expression matrix and spot locations matched ascross spots  
@@ -20,8 +20,8 @@ As result, returns the Eigen-Gene vector, Eigen-Patient vector, Cosine similarit
 ```
 EigenGene.to_csv('Eigen-Gene.csv')                  # Save the Eigen-Gene vector as a cvs file
 EigenPatient.to_csv('Eigen-Patient.csv')            # Save the Eigen-Patient vector as a cvs file
-Result['Cosine-Similarity'].to_csv('Predicted-Phentype-On-Spots.csv')  # Save the predicted phenotype quantity vector as a cvs file
-plt.savefig('Prediction-Plot.png', dpi=300,  bbox_inches = 'tight')    # Save the prediction plot for phenotype quantity
+Result['SpacePhenotyper'].to_csv('PredictedValues-On-Spots.csv')  # Save the predicted phenotype quantity vector as a cvs file
+plt.savefig(Method+'-Prediction-Plot.png', dpi = 300, bbox_inches = 'tight')    # Save the prediction plot for phenotype quantity
 ```
 #### Python [Package](code)
 * The SpacePhenotyper method is implemented in python and the codes are available as [Python Code](code/SpacePhenotyper.py) and [Jupyter Notebook](code/SpacePhenotyper.ipynb) modules.
