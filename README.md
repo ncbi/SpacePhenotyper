@@ -33,9 +33,8 @@ For each of the SRT samples, the spatially resolved transcriptomics (SRT) gene e
 
 #### Results of the bulk data analysis [Result](result)
 The following files proves the results for the analysis on bulk data of cancer patients.
-* Lists of the Eigen-Genes for BRCA cancer and the 5 phenotypes with the predicted values across patients [Eigen-Genes](result/Eigen-Genes.xlsx).
-* Lists of the Eigen-Patients for BRCA cancer and the 5 phenotypes with the predicted values across patients [Eigen-Patients](result/Eigen-Patients.xlsx).
-* GO terms enriched for the sorted list of top predictor genes [GO terms for predictors](result/GO-terms.xlsx). The GO terms enriched for top negative and positive predictors in Eigen-Patient.
+* Genes are sorted by thier predictive values in the Eigen-Patients for the 5 phenotypes [Eigen-Patients](result/Eigen-Patients.xlsx).
+* GO terms enriched for the sorted list of top predictor genes [GO terms for predictors](result/GO-terms Enriched for Top Predictors in Eigen Patient.xlsx). The GO terms enriched for top negative and positive predictors in Eigen-Patient.
 #### Results of the SRT data analysis [Result](result)
 The following files proves the results for the analysis on spacial transcriptomics (SRT) data
 * Predicted phenotype quantity on spots [Result](result/Cosine-Similaries.xlsx). Prediction based on similarity between Eigen-Patient and SRT gene expression in each spot.
