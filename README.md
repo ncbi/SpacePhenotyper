@@ -1,9 +1,9 @@
 # SpacePhenotyper
-SpacePhenotyper: A computational method for translating information between different (but related) types of data
+SpacePhenotyper: A computational method introduces a framework for translating information between different (but related) types of data
 #### Pre-required installations before running SpacePhenotyper
 Python libraries pandas, numpy, seaborn, scipy, matplotlib and sklearn are prerequired to be installed before running SpacePhenotyper
 #### Input Data to SpacePhenotyper
-Quantity vector of a cancer-related phenotype across patents, corresponding bulk gene expression data, and spatially resolved transcriptomic (SRT) data as cvs files
+Quantity values of a cancer-related phenotype across patents (Vector), corresponding bulk gene expression data (Matrix), and spatially resolved transcriptomic (SRT) data (Matrix) as cvs files
 ```
 BulkExpression = pd.read_csv('Bulk-Expr-BRCA-TCGA.csv', index_col=0)           # Load the bulk gene expression matrix (columns are genes and rows are patients)
 PhenotypeVector = pd.read_csv('PhenotypeVector-TP-BRCA-TCGA.csv', index_col=0) # Load the vector of phenotype quantity matched with the rows of bulk gene expression matrix (a vector across patients)
