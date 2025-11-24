@@ -11,7 +11,7 @@ DataSRT = pd.read_csv('SRT-Expr-Breast-1.1.0-Smoothed.csv', index_col=0)       #
 MetaData = pd.read_csv('SRT-tissue-positions-Breast-1.1.0.csv', index_col=0)   # Load spot locations in SRT data
 ```
 #### To Run SpacePhenotyper
-SpacePhenotyper takes a phenotype quantity vector and a bulk gene expression matrix across multiple patients, and SRT gene expression matrix and spot locations matched ascross spots  
+SpacePhenotyper takes a phenotype quantity vector and a bulk gene expression matrix across multiple patients, and SRT gene expression matrix and spot locations matched across spots  
 ```
  [EigenGene, EigenPatient, Result]= SpacePhenotyper(PhenotypeVector, BulkExpression, DataSRT, MetaData)  # Predict the phenotype quantity on spots of tissue slice  
 ```
@@ -29,13 +29,13 @@ plt.savefig(Method+'-Prediction-Plot.png', dpi = 300, bbox_inches = 'tight')    
 #### Bulk data sets [Data Bulk](Bulk-data)
 The phenotype quantity of patients (Tumor-Purity, Hazard, RCB, Immune and Proliferation) and bulk gene expression matrices whose columns represent the genes and rows represent patients
 #### SRT data sets [Data SRT](SRT-data)
-For each of the SRT samples, the spatially resolved transcriptomics (SRT) gene expression data matrix whose columns represent spots and rows represent genes, and spot locations denoting the spacial location of spots in the tissue slice
+For each of the SRT samples, the spatially resolved transcriptomics (SRT) gene expression data matrix whose columns represent spots and rows represent genes, and spot locations denoting the spatial location of spots in the tissue slice
 
 #### Results of the bulk data analysis [Result](result)
 The following files proves the results for the analysis on bulk data of cancer patients.
-* Genes are sorted by thier predictive values in the Eigen-Patients for the 5 phenotypes [Eigen-Patients](result/Eigen-Patients.xlsx).
+* Genes are sorted by their predictive values in the Eigen-Patients for the 5 phenotypes [Eigen-Patients](result/Eigen-Patients.xlsx).
 * GO terms enriched for the sorted list of top predictor genes [GO terms for predictors](result/Enriched-GO-terms.xlsx). The GO terms enriched for top negative and positive predictors in Eigen-Patient.
 #### Results of the SRT data analysis [Result](result)
-The following files proves the results for the analysis on spacial transcriptomics (SRT) data
+The following files proves the results for the analysis on spatial transcriptomics (SRT) data
 * Predicted phenotype quantity on spots [Predicted-CosineSimilarity](result/Prediction-CosineSimilarity.xlsx). Prediction based on cosine similarity between Eigen-Patient and SRT gene expression in each spot.
 * Plots for showing the prediction results over spatial location [Prediction Plots](result)
