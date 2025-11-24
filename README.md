@@ -37,5 +37,5 @@ The following files proves the results for the analysis on bulk data of cancer p
 * GO terms enriched for the sorted list of top predictor genes [GO terms for predictors](result/Enriched-GO-terms.xlsx). The GO terms enriched for top negative and positive predictors in Eigen-Patient.
 #### Results of the SRT data analysis [Result](result)
 The following files proves the results for the analysis on spacial transcriptomics (SRT) data
-* Predicted phenotype quantity on spots [Result](result/Prediction-CosineSimilarity.xlsx). Prediction based on cosine similarity between Eigen-Patient and SRT gene expression in each spot.
-* Plots for showing the prediction results over spatial location [Result](result)
+* Predicted phenotype quantity on spots [Predicted values](result/Prediction-CosineSimilarity.xlsx). Prediction based on cosine similarity between Eigen-Patient and SRT gene expression in each spot.
+* Plots for showing the prediction results over spatial location [Prediction Plots](result)
